@@ -1,0 +1,15 @@
+{% extends 'golf_handicap/base.html' %}
+
+{% block content %}
+
+  <p>Courses Played</p>
+
+  <ul>
+    {% for course in courses %}
+      <li>{{ course.course_name }}</li>
+    {% empty %}
+      <li> No courses have been played yet.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}

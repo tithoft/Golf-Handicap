@@ -27,9 +27,13 @@ class CourseTee(models.Model):
 class Score(models.Model):
     """Score for each round."""
     tee = models.ForeignKey(CourseTee, on_delete=models.CASCADE)
-    score = models.IntegerField(max_length=4)
-    date_played = models.DateTimeField()
+    score = models.IntegerField()
+    date_played = models.DateField()
     date_added = models.DateTimeField(auto_now_add=True)
+
+    def score_differential(self):
+        """Calculates round differential using USGA rules. Differential used to calculate golfer's handicap."""
+        return (((self.score - self.tee.course_rating) * 13) / self.tee.slope_rating)
 
     def __str__(self):
         """Returns a string representing the score."""
