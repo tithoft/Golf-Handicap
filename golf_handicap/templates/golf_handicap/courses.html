@@ -6,7 +6,9 @@
 
   <ul>
     {% for course in courses %}
-      <li>{{ course.course_name }}</li>
+      <li>
+        <a href="{% url 'golf_handicap:course' course.id %}">{{ course.course_name }}</a>
+      </li>
     {% empty %}
       <li> No courses have been played yet.</li>
     {% endfor %}

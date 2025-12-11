@@ -10,4 +10,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     # Page showing golf courses played
     path('courses/', views.courses, name='courses'),
+    # Page showing course information & scores at course
+    path('courses/<int:course_id>/', views.course, name='course'),
 ]

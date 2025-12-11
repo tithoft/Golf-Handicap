@@ -1,0 +1,20 @@
+{% extends 'golf_handicap/base.html' %}
+
+{% block content %}
+
+  <p>Course: {{ course.course_name }} </p>
+  
+  <p>Tees</p>
+  <ul>
+    {% for tee in tees %}
+      <li>
+        <p>Tee Color: {{ tee.tee_name }}</p>
+        <p>Course Rating: {{ tee.course_rating }}</p>
+        <p>Slope Rating: {{ tee.slope_rating }}
+      </li>
+    {% empty %}
+      <li>There is no information about this course.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock content %}
