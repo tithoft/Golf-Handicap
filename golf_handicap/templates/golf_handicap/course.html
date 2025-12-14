@@ -5,6 +5,9 @@
   <p>Course: {{ course.course_name }} </p>
   
   <p>Tees</p>
+  <p>
+    <a href="{% url 'golf_handicap:new_course_tee' course.id %}">Add new golf tee</a>
+  </p>
   <ul>
     {% for tee in tees %}
       <li>
