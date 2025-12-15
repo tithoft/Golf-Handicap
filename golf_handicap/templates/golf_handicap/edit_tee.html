@@ -1,0 +1,15 @@
+{% extends 'golf_handicap/base.html' %}
+
+{% block content %}
+
+  <p><a href="{% url 'golf_handicap:course' course.id %}">{{ course }}</a></p>
+
+  <p>Edit course tee:</p>
+
+  <form action="{% url 'golf_handicap:edit_tee' tee.id %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name="submit">Save changes</button>
+  </form>
+
+{% endblock content %}

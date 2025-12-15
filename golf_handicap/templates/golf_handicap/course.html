@@ -6,14 +6,17 @@
   
   <p>Tees</p>
   <p>
-    <a href="{% url 'golf_handicap:new_course_tee' course.id %}">Add new golf tee</a>
+    <a href="{% url 'golf_handicap:new_tee' course.id %}">Add new golf tee</a>
   </p>
   <ul>
     {% for tee in tees %}
       <li>
         <p>Tee Color: {{ tee.tee_name }}</p>
         <p>Course Rating: {{ tee.course_rating }}</p>
-        <p>Slope Rating: {{ tee.slope_rating }}
+        <p>Slope Rating: {{ tee.slope_rating }}</p>
+        <p>
+          <a href="{% url 'golf_handicap:edit_tee' tee.id %}">Edit course tee</a>
+        </p>
       </li>
     {% empty %}
       <li>There is no information about this course.</li>

@@ -15,5 +15,7 @@ urlpatterns = [
     # Page for adding a new golf course.
     path('new_course/', views.new_course, name='new_course'),
     # Page for adding course information.
-    path('new_course_tee/<int:course_id>/', views.new_course_tee, name='new_course_tee'),
+    path('new_tee/<int:course_id>/', views.new_tee, name='new_tee'),
+    # Page for editing golf tee.
+    path('edit_tee_tee/<int:tee_id>/', views.edit_tee, name='edit_tee'),
 ]

@@ -5,7 +5,7 @@
   <p><a href="{% url 'golf_handicap:course' course.id %}">{{ course }}</a></p>
 
   <p>Add new course tee:</p>
-  <form action="{% url 'golf_handicap:new_course_tee' course.id %}" method='post'>
+  <form action="{% url 'golf_handicap:new_tee' course.id %}" method='post'>
     {% csrf_token %}
     {{ form.as_div }}
     <button name='submit'>Add course tee</button>
