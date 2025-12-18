@@ -22,7 +22,7 @@ class CourseTee(models.Model):
 
     def __str__(self):
         """Return a string representing the tee."""
-        return self.tee_name
+        return f"{self.course.course_name} - {self.tee_name}"
     
 class Score(models.Model):
     """Score for each round."""
@@ -35,6 +35,6 @@ class Score(models.Model):
         """Calculates round differential using USGA rules. Differential used to calculate golfer's handicap."""
         return (((self.score - self.tee.course_rating) * 13) / self.tee.slope_rating)
 
-    def __str__(self):
+    def __int__(self):
         """Returns a string representing the score."""
         return self.score

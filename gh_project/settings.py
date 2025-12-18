@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # My apps.
     'golf_handicap',
+    'accounts',
 
     # Default django apps.
     'django.contrib.admin',

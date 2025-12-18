@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
-from .models import Course, CourseTee
-from .forms import CourseForm, CourseTeeForm
+from .models import Course, CourseTee, Score
+from .forms import CourseForm, CourseTeeForm, ScoreForm
 
 def index(request):
     """Home page for Golf Handicap."""
@@ -72,3 +72,18 @@ def edit_tee(request, tee_id):
     context = {'tee': tee, 'course': course, 'form': form}
     return render(request, 'golf_handicap/edit_tee.html', context)
 
+def new_score(request):
+    """Add a new course."""
+    if request.method != 'POST':
+        # No data submitted; create a blank form.
+        form = ScoreForm()
+    else:
+        # POST data submitted; process data.
+        form = ScoreForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('golf_handicap:courses')
+        
+    # Display a blank or invalid form
+    context = {'form': form}
+    return render(request, 'golf_handicap/new_score.html', context)

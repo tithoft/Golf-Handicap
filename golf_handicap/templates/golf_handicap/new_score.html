@@ -1,0 +1,12 @@
+{% extends 'golf_handicap/base.html' %}
+
+{% block content %}
+
+  <p>Add a new score:</p>
+  <form action="{% url 'golf_handicap:new_score' %}" method='post'>
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button name='submit'>Add score</button>
+  </form>
+
+{% endblock content %}

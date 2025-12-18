@@ -18,4 +18,6 @@ urlpatterns = [
     path('new_tee/<int:course_id>/', views.new_tee, name='new_tee'),
     # Page for editing golf tee.
     path('edit_tee_tee/<int:tee_id>/', views.edit_tee, name='edit_tee'),
+    # Page for adding golf score.
+    path('new_score/', views.new_score, name='new_score'),
 ]
