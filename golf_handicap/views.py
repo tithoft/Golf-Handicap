@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .models import Course, CourseTee, Score
 from .forms import CourseForm, CourseTeeForm, ScoreForm
@@ -7,12 +8,14 @@ def index(request):
     """Home page for Golf Handicap."""
     return render(request, 'golf_handicap/index.html')
 
+@login_required
 def courses(request):
     """Show all courses user played."""
     courses = Course.objects.order_by('course_name')
     context = {'courses': courses}
     return render(request, 'golf_handicap/courses.html', context)
 
+@login_required
 def course(request, course_id):
     """Show information about a singel course and scores from course."""
     course = Course.objects.get(id=course_id)
@@ -20,6 +23,7 @@ def course(request, course_id):
     context = {'course': course, 'tees': tees}
     return render(request, 'golf_handicap/course.html', context)
 
+@login_required
 def new_course(request):
     """Add a new course."""
     if request.method != 'POST':
@@ -36,6 +40,7 @@ def new_course(request):
     context = {'form': form}
     return render(request, 'golf_handicap/new_course.html', context)
 
+@login_required
 def new_tee(request, course_id):
     """Add new course tee for individual course."""
     course = Course.objects.get(id=course_id)
@@ -56,6 +61,7 @@ def new_tee(request, course_id):
     context = {'course': course, 'form': form}
     return render(request, 'golf_handicap/new_tee.html', context)
 
+@login_required
 def edit_tee(request, tee_id):
     """Edit an existingn course tee."""
     tee = CourseTee.objects.get(id=tee_id)
@@ -72,6 +78,7 @@ def edit_tee(request, tee_id):
     context = {'tee': tee, 'course': course, 'form': form}
     return render(request, 'golf_handicap/edit_tee.html', context)
 
+@login_required
 def new_score(request):
     """Add a new course."""
     if request.method != 'POST':
@@ -81,7 +88,9 @@ def new_score(request):
         # POST data submitted; process data.
         form = ScoreForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_score = form.save(commit=False)
+            new_score.owner = request.user
+            new_score.save()
             return redirect('golf_handicap:courses')
         
     # Display a blank or invalid form

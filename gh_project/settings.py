@@ -124,3 +124,4 @@ STATIC_URL = 'static/'
 # My settings.
 LOGIN_REDIRECT_URL = 'golf_handicap:index'
 LOGOUT_REDIRECT_URL = 'golf_handicap:index'
+LOGIN_URL = 'accounts:login'

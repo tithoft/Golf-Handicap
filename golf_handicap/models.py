@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Course(models.Model):
     """Course user enters a score for."""
@@ -30,6 +31,7 @@ class Score(models.Model):
     score = models.IntegerField()
     date_played = models.DateField()
     date_added = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def score_differential(self):
         """Calculates round differential using USGA rules. Differential used to calculate golfer's handicap."""
