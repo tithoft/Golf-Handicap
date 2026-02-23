@@ -3,9 +3,13 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Course, CourseTee, Score
 from .forms import CourseForm, CourseTeeForm, ScoreForm
+from .utils import calculate_handicap
 
+@login_required
 def index(request):
     """Home page for Golf Handicap."""
+    scores = Score.objects.filter(owner=request.user)[:20]
+    handicap = calculate_handicap(scores)
     return render(request, 'golf_handicap/index.html')
 
 @login_required
@@ -17,7 +21,7 @@ def courses(request):
 
 @login_required
 def course(request, course_id):
-    """Show information about a singel course and scores from course."""
+    """Show information about a single course and scores from course."""
     course = Course.objects.get(id=course_id)
     tees = course.coursetee_set.order_by('slope_rating')
     context = {'course': course, 'tees': tees}
