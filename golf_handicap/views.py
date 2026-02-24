@@ -8,9 +8,12 @@ from .utils import calculate_handicap
 @login_required
 def index(request):
     """Home page for Golf Handicap."""
-    scores = Score.objects.filter(owner=request.user)[:20]
+    scores = Score.objects.filter(owner=request.user).order_by('-date_played')[:20]
     handicap = calculate_handicap(scores)
-    return render(request, 'golf_handicap/index.html')
+    return render(request, 'golf_handicap/index.html', {
+        'scores': scores,
+        'handicap': handicap
+    })
 
 @login_required
 def courses(request):

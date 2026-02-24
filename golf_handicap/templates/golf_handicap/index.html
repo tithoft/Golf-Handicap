@@ -5,7 +5,12 @@
 <p>Golf Handicap</p>
 
 {% if user.is_authenticated %}
-  <p>Your score is</p>
+  {% if handicap %}
+    <p>Your handicap is {{ handicap }}</p>
+  {% else %}
+    <p>Not enough rounds played to calculate a handicap.</p>
+  {% endif %}
+
 {% else %}
   <p>Application to save golf scores and calculate Handicap.</p>
 {% endif %}

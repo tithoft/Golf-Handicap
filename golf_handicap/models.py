@@ -35,7 +35,7 @@ class Score(models.Model):
 
     def score_differential(self):
         """Calculates round differential using USGA rules. Differential used to calculate golfer's handicap."""
-        return (((self.score - self.tee.course_rating) * 13) / self.tee.slope_rating)
+        return (((self.score - self.tee.course_rating) * 113) / self.tee.slope_rating)
 
     def __int__(self):
         """Returns a string representing the score."""

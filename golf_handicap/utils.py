@@ -8,3 +8,8 @@ def calculate_handicap(scores):
     
     differentials = sorted(
         score.score_differential() for score in scores)
+
+    lowest = differentials[:min(8, len(differentials))]
+    avg = sum(lowest) / len(lowest)
+
+    return round(float(avg) * 0.96, 1)
