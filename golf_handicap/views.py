@@ -118,4 +118,12 @@ def edit_score(request, score_id):
             return redirect('golf_handicap:index')
     context = {'score': score, 'form': form}
     return render(request, 'golf_handicap/edit_score.html', context)
+
+@login_required
+def delete_score(request, score_id):
+    """Delete an existing score"""
+    score = Score.objects.get(id=score_id, owner=request.user)
+    if request.method == 'POST':
+        score.delete()
+        return redirect('golf_handicap:index')
         
