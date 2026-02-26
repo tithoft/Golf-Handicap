@@ -103,3 +103,19 @@ def new_score(request):
     # Display a blank or invalid form
     context = {'form': form}
     return render(request, 'golf_handicap/new_score.html', context)
+
+@login_required
+def edit_score(request, score_id):
+    """Edit an existing score."""
+    score = Score.objects.get(id=score_id, owner=request.user)
+    if request.method != 'POST':
+        form = ScoreForm(instance=score)
+    else:
+        # Post data submitted; process data.
+        form = ScoreForm(instance=score, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('golf_handicap:index')
+    context = {'score': score, 'form': form}
+    return render(request, 'golf_handicap/edit_score.html', context)
+        

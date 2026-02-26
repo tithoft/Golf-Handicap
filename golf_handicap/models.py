@@ -39,4 +39,4 @@ class Score(models.Model):
 
     def __int__(self):
         """Returns a string representing the score."""
-        return self.score
+        return f"{self.owner} - {self.score}"

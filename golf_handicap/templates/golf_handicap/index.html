@@ -7,6 +7,16 @@
 {% if user.is_authenticated %}
   {% if handicap %}
     <p>Your handicap is {{ handicap }}</p>
+
+    <h2>Recent Scores</h2>
+      <ul>
+        {% for score in scores %}
+          <li>{{ score.date_played }} | {{ score.tee}} | {{ score.score }} 
+            <a href="{% url 'golf_handicap:edit_score' score_id=score.id %}">Edit Score</a></p>
+          </li>
+        {% endfor %}
+      </ul>
+
   {% else %}
     <p>Not enough rounds played to calculate a handicap.</p>
   {% endif %}
