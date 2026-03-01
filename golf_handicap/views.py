@@ -98,7 +98,7 @@ def new_score(request):
             new_score = form.save(commit=False)
             new_score.owner = request.user
             new_score.save()
-            return redirect('golf_handicap:courses')
+            return redirect('golf_handicap:index')
         
     # Display a blank or invalid form
     context = {'form': form}
