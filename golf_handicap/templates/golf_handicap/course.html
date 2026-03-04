@@ -1,26 +1,34 @@
 {% extends 'golf_handicap/base.html' %}
 
+{% block page_header %}
+  <h1>{{ course.course_name }}</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-  <p>Course: {{ course.course_name }} </p>
-  
-  <p>Tees</p>
-  <p>
-    <a href="{% url 'golf_handicap:new_tee' course.id %}">Add new course tee</a>
-  </p>
   <ul>
     {% for tee in tees %}
-      <li>
-        <p>Tee Color: {{ tee.tee_name }}</p>
-        <p>Course Rating: {{ tee.course_rating }}</p>
-        <p>Slope Rating: {{ tee.slope_rating }}</p>
-        <p>
-          <a href="{% url 'golf_handicap:edit_tee' tee.id %}">Edit course tee</a>
-        </p>
-      </li>
+      <div class="card mb-3">
+        <div class="card-header d-flex align-items-center">
+          <h4 class="mb-0">
+            <small>{{tee.tee_name}} Tee</small>
+          </h4>
+          <a href="{% url 'golf_handicap:edit_tee' tee.id %}" class="ms-auto" aria-label="Edit">Edit</a>
+        </div>
+        <div class="card-body">
+
+          <p>Course Rating: {{ tee.course_rating }}</p>
+          <p>Slope Rating: {{ tee.slope_rating }}</p>
+        </div>
+      </div>
+    
     {% empty %}
       <li>There is no information about this course.</li>
     {% endfor %}
   </ul>
+
+  <p>
+    <a href="{% url 'golf_handicap:new_tee' course.id %}">Add new course tee</a>
+  </p>
 
 {% endblock content %}

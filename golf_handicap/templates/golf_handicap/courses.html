@@ -1,16 +1,18 @@
 {% extends 'golf_handicap/base.html' %}
 
+{% block page_header %}
+  <h1>Courses Played</h1>
+{% endblock page_header %}
+
 {% block content %}
 
-  <p>Courses Played</p>
-
-  <ul>
+  <ul class="list-group border-bottom pb-2 mb-4">
     {% for course in courses %}
-      <li>
+      <li class="list-group-item border-0">
         <a href="{% url 'golf_handicap:course' course.id %}">{{ course.course_name }}</a>
       </li>
     {% empty %}
-      <li> No courses have been played yet.</li>
+      <li class="list-group-item border-0"> No courses have been played yet.</li>
     {% endfor %}
   </ul>
 

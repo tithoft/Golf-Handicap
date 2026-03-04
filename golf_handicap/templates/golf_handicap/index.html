@@ -10,9 +10,10 @@
           <p class="lead">Your handicap is {{ handicap }}</p>
         {% endif %}
 
-      {% endif %}
+      {% else %}
 
-      <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
+        <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
+      {% endif %}
     </div>
   </div>
 {% endblock page_header %}
