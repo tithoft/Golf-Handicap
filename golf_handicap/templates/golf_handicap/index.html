@@ -9,10 +9,6 @@
         {% if handicap %}
           <p class="lead">Your handicap is {{ handicap }}</p>
         {% endif %}
-
-      {% else %}
-
-        <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">Register &raquo;</a>
       {% endif %}
     </div>
   </div>
@@ -20,12 +16,8 @@
 
 {% block content %}
 
-<p>Golf Handicap</p>
-
 {% if user.is_authenticated %}
   {% if handicap %}
-    <p>Your handicap is {{ handicap }}</p>
-
     <h2>Recent Scores</h2>
       <ul>
         {% for score in scores %}

@@ -1,12 +1,13 @@
 {% extends 'golf_handicap/base.html' %}
+{% load django_bootstrap5 %}
 
 {% block content %}
   <p>Add a new golf course:</p>
 
   <form action="{% url 'golf_handicap:new_course' %}" method='post'>
     {% csrf_token %}
-    {{ form.as_div }}
-    <button name="submit">Add course</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Save changes" %}
   </form>
 
 {% endblock content %}
