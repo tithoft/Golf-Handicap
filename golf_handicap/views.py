@@ -126,4 +126,10 @@ def delete_score(request, score_id):
     if request.method == 'POST':
         score.delete()
         return redirect('golf_handicap:index')
-        
+    
+@login_required
+def scores(request):
+    """Show all scores."""
+    scores = Score.objects.filter(owner=request.user).order_by('-date_played')[:20]
+    context = {'scores': scores}
+    return render(request, 'golf_handicap/scores.html', context)

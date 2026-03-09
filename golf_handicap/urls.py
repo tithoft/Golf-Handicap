@@ -24,4 +24,6 @@ urlpatterns = [
     path('edit_score/<int:score_id>/', views.edit_score, name='edit_score'),
     # Page for deleting an existing golf score.
     path('delete_score/<int:score_id>/', views.delete_score, name='delete_score'),
+    # Page for viewing scores.
+    path('scores/', views.scores, name='scores'),
 ]

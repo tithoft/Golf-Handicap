@@ -1,4 +1,5 @@
 {% extends 'golf_handicap/base.html' %}
+{% load bootstrap_icons %}
 
 {% block page_header %}
   <div class="p-3 mb-4 bg-light border rounded-3">
@@ -22,7 +23,7 @@
       <ul>
         {% for score in scores %}
           <li>{{ score.date_played }} | {{ score.tee}} | {{ score.score }} 
-            <a href="{% url 'golf_handicap:edit_score' score_id=score.id %}">Edit Score</a>
+            <a href="{% url 'golf_handicap:edit_score' score_id=score.id %}">{% bs_icon 'pencil-square' size='1.5em' %}</a>
 
             <form action="{% url 'golf_handicap:delete_score' score_id=score.id %}" method="post" style="display_inline;">
               {% csrf_token %}
